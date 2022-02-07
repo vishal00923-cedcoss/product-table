@@ -1,0 +1,51 @@
+.container {
+	width: 60%;
+	max-width: 920px;
+	margin: 12rem auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.product-data {
+	width: 320px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 8px 0;
+}
+
+.product-data input {
+	padding: 6px;
+}
+
+#btn {
+	display: inline-block;
+	width: 180px;
+	margin: 48px 16px;
+	padding: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+	border: 2px solid #000;
+}
+
+.th-data {
+	text-align: center;
+	padding: 12px;
+	margin: 20px;
+}
+
+tr {
+	text-align: center;
+}
+
+.output {
+	text-align: center;
+	padding: 12px;
+	margin: 20;
+}
