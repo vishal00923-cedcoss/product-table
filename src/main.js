@@ -1,24 +1,14 @@
 const btn = document.getElementById("btn");
 
 let products = [];
+let flag = 1;
 
 function addProduct() {
 	let product = insertData();
 
-	products.push(product);
-
-	let table = document.getElementById("table");
-
-	let row = table.insertRow();
-
-	let cell_1 = row.insertCell();
-	let cell_2 = row.insertCell();
-	let cell_3 = row.insertCell();
-
-	for (var i = 0; i < products.length; ++i) {
-		cell_1.innerHTML = products[i].productId;
-		cell_2.innerHTML = products[i].productName;
-		cell_3.innerHTML = products[i].productPrice;
+	if (flag) {
+		products.push(product);
+		display(products);
 	}
 }
 
@@ -27,11 +17,52 @@ function insertData() {
 	let productName = document.getElementById("product-name").value;
 	let productPrice = document.getElementById("product-price").value;
 
-	return {
-		productId: productId,
-		productName: productName,
-		productPrice: productPrice,
-	};
+	if (checkValues(productId, productName, productPrice) && validateId(productId, products)) {
+		flag = 1;
+		return {
+			productId: productId,
+			productName: productName,
+			productPrice: productPrice,
+		};
+	} else {
+		flag = 0;
+		alert("Invalid Input!!!");
+	}
+}
+
+function checkValues(productId, productName, productPrice) {
+	if (productId == "" || productName == "" || productPrice == "") {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function validateId(productId, products) {
+	for (let i = 0; i < products.length; ++i) {
+		if (products.productId[i] == productId) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function display(products) {
+	let table = "<tr>\
+	<th>Product Id</th>\
+	<th>Product Name</th>\
+	<th>Product Price</th>\
+    </tr>";
+
+	for (let i = 0; i < products.length; ++i) {
+		table += "<tr>\
+		<td>" + products[i].productId + "</td>\
+		<td>" + products[i].productName + " </td>\
+		<td>" + products[i].productPrice + " </td>\
+		</tr>";
+	}
+
+	document.getElementById("table").innerHTML = table;
 }
 
 btn.addEventListener("click", addProduct);
